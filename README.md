@@ -74,7 +74,7 @@ backend:
   name: [github | gitlab]
   repo: user/repo   # Path to your Github/Gitlab repository
   branch: master    # Branch to update
-  base_url: https://your.server.com # Path to ext auth provider
+  base_url: https://auth.example.com # Path to ext auth provider
 ```
 
 ## 3) Deploy
