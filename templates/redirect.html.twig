@@ -1,0 +1,22 @@
+<html>
+
+<body>
+    <script>
+        (function () {
+            function recieveMessage(e) {
+                console.log("recieveMessage %o", e)
+                // send message to main window with the app
+                window.opener.postMessage(
+                    '{{ message | raw }}',
+                    '{{ origin | raw }}' // TODO: IIF origin == null use e.origin
+                )
+            }
+            window.addEventListener("message", recieveMessage, false)
+            // Start handshake with parent
+            console.log("Sending message: %o", "{{ oauthProvider }}")
+            window.opener.postMessage("authorizing:{{ oauthProvider }}", "*")
+        })()
+    </script>
+</body>
+
+</html>
