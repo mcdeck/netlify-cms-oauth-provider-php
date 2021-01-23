@@ -7,7 +7,8 @@
 Github, Github Enterprise ~~and Gitlab~~ are currently supported, but as this is a general Oauth client, feel free to submit a PR to add other git hosting providers.
 
 Other implementations in: 
-* [Node]: https://github.com/vencax/netlify-cms-github-oauth-provider
+* [Node](https://github.com/vencax/netlify-cms-github-oauth-provider) - which was the main inspiration for this
+* [PHP](https://github.com/TSV-Zorneding-1920/netlify-cms-oauth-provider-php) that did not work for me...
 * [Go lang](https://github.com/igk1972/netlify-cms-oauth-provider-go).
 
 ## 1) Install Locally
@@ -80,5 +81,7 @@ backend:
 ## 3) Deploy
 
 ### FTP
+
+Create an `.env.local` file next to `.env` and set `CLIENT_ID`, `CLIENT_SECRET` and `REDIRECT_URL` as per the example above.
 
 Upload to everyhting and point your webserver to `public` folder, or chose whatever method you normally chose to deploy Symfony apps.
