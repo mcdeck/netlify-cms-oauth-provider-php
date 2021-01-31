@@ -33,7 +33,7 @@ Configuration is done with environment variables, which can be supplied as comma
 **Example .env.local file:**
 
 ```ini
-# only github supported right now - you can leave these defaults
+# Default values for GitHub - leave as they are
 # OAUTH_PROVIDER=github
 # SCOPES=api,user,repo
 # overwrite for GitHub Enterprise
@@ -44,19 +44,13 @@ REDIRECT_URI=https://auth.example.com/callback/
 ORIGIN=https://www.example.com
 ```
 
-TODO: ~~For Gitlab you also have to provide this environment variables:
+For Gitlab you also have to provide this environment variables:
 ```ini
+# You can customize this to your URL for self-hosted GitLab instances
+OAUTH_DOMAIN=https://gitlab.com
 OAUTH_PROVIDER=gitlab
 SCOPES=api
-OAUTH_AUTHORIZE_PATH=/oauth/authorize
-OAUTH_TOKEN_PATH=/oauth/token
 ```
-
-You can also setup an environment variable to configure "_blank" target when auth window is opened. Default is "_self".
-```ini
-AUTH_TARGET=_blank
-```
-~~
 
 **Client ID & Client Secret:**
 After registering your Oauth app, you will be able to get your client id and client secret on the next page.

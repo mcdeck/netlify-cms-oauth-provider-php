@@ -17,7 +17,10 @@ class AuthController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('index.html.twig', []);
+        $oauthProvider = $this->getParameter('app.oauthProvider');
+        return $this->render('index.html.twig', [
+            'oauthProvider' => $oauthProvider
+        ]);
     }
 
     /**

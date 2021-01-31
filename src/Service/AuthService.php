@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use League\OAuth2\Client\Provider\Github;
+use Omines\OAuth2\Client\Provider\Gitlab;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -18,16 +19,30 @@ class AuthService
 
     public function __construct(SessionInterface $session, ContainerBagInterface $params)
     {
-        $this->provider = new Github([
-            'clientId'          => $params->get('app.clientId'),
-            'clientSecret'      => $params->get('app.clientSecret'),
-            'redirectUri'       => $params->get('app.redirectUri'),
-            'domain'            => $params->get('app.domain')
-        ]);
-
         $this->session = $session;
-
         $this->params = $params;
+
+        $oauthProvider = strtolower($params->get('app.oauthProvider'));
+        switch($oauthProvider) {
+            case 'github':
+                $this->provider = new Github([
+                    'clientId'          => $params->get('app.clientId'),
+                    'clientSecret'      => $params->get('app.clientSecret'),
+                    'redirectUri'       => $params->get('app.redirectUri'),
+                    'domain'            => $params->get('app.domain')
+                ]);
+                break;
+            case 'gitlab':
+                $this->provider = new Gitlab([
+                    'clientId'          => $params->get('app.clientId'),
+                    'clientSecret'      => $params->get('app.clientSecret'),
+                    'redirectUri'       => $params->get('app.redirectUri'),
+                    'domain'            => $params->get('app.domain')
+                ]);
+                break;
+            default:
+                throw new Exception("Invalid Oauth Provider '{$oauthProvider}'!");
+        }       
     }
 
     private function isCodeSet(Request $request) : bool 
