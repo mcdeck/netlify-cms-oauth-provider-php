@@ -29,6 +29,9 @@
     "league/oauth2-github": {
         "version": "2.0.0"
     },
+    "omines/oauth2-gitlab": {
+        "version": "3.3.0"
+    },
     "paragonie/random_compat": {
         "version": "v9.99.100"
     },
