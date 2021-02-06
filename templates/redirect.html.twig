@@ -5,10 +5,14 @@
         (function () {
             function recieveMessage(e) {
                 console.log("recieveMessage %o", e)
+                if (!e.origin.match('{{ originPattern | raw }}')) {
+                    console.log('Invalid origin: %s', e.origin);
+                    return;
+                }
                 // send message to main window with the app
                 window.opener.postMessage(
-                    '{{ message | raw }}',
-                    '{{ origin | raw }}' // TODO: IIF origin == null use e.origin
+                    'authorization:{{ oauthProvider }}:{{ message|raw }}:{{ content | raw }}',
+                    e.origin
                 )
             }
             window.addEventListener("message", recieveMessage, false)
