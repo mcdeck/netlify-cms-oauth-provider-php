@@ -52,8 +52,9 @@ class AuthController extends AbstractController
         $content = json_encode($content);
 
         return $this->render('redirect.html.twig', [
-            'message' => "authorization:{$oauthProvider}:{$message}:{$content}",
-            'origin' => $origin,
+            "content" => $content,
+            "message" => $message,
+            'originPattern' => $origin,
             'oauthProvider' => $oauthProvider
         ]);
     }
