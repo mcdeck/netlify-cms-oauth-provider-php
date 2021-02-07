@@ -41,7 +41,7 @@ Configuration is done with environment variables, which can be supplied as comma
 OAUTH_CLIENT_ID=11111111111111
 OAUTH_CLIENT_SECRET=22222222222222222222222222222222222
 REDIRECT_URI=https://auth.example.com/callback/
-ORIGIN=https://www.example.com
+ORIGIN=example.com
 ```
 
 For Gitlab you also have to provide this environment variables:
