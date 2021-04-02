@@ -4,7 +4,7 @@
 
 [netlify-cms](https://www.netlifycms.org/) has its own github OAuth client. This implementation was created by reverse engineering the results of that client, so it's not necessary to reimplement client part of [netlify-cms](https://www.netlifycms.org/).
 
-Github, Github Enterprise ~~and Gitlab~~ are currently supported, but as this is a general Oauth client, feel free to submit a PR to add other git hosting providers.
+Github, Github Enterprise and Gitlab are currently supported, but as this is a general Oauth client, feel free to submit a PR to add other git hosting providers.
 
 Other implementations in: 
 * [Node](https://github.com/vencax/netlify-cms-github-oauth-provider) - which was the main inspiration for this
