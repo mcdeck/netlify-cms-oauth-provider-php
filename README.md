@@ -44,7 +44,7 @@ REDIRECT_URI=https://auth.example.com/callback/
 ORIGIN=example.com
 ```
 
-For Gitlab you also have to provide this environment variables:
+For Gitlab you also have to provide these environment variables:
 ```ini
 # You can customize this to your URL for self-hosted GitLab instances
 OAUTH_DOMAIN=https://gitlab.com
