@@ -21,6 +21,10 @@
             window.opener.postMessage("authorizing:{{ oauthProvider }}", "*")
         })()
     </script>
+    {% if error %}
+    <h1>ERROR: {{ error }}</h1>
+    <p>{{ error_description }}</p>
+    {% endif %}
 </body>
 
 </html>

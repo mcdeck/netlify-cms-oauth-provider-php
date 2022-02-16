@@ -39,6 +39,9 @@ class AuthController extends AbstractController
         $oauthProvider = $this->getParameter('app.oauthProvider');
         $origin = $this->getParameter('app.origin');
 
+        $error = $request->query->get('error');
+        $error_description = $request->query->get('error_description');
+
         try {
             $content = [
                 'token' => $authService->getToken($request),
@@ -54,6 +57,8 @@ class AuthController extends AbstractController
         return $this->render('redirect.html.twig', [
             "content" => $content,
             "message" => $message,
+            "error" => $error,
+            "error_description" => $error_description,
             'originPattern' => $origin,
             'oauthProvider' => $oauthProvider
         ]);
