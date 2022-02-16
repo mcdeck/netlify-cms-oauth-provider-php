@@ -42,6 +42,9 @@ OAUTH_CLIENT_ID=11111111111111
 OAUTH_CLIENT_SECRET=22222222222222222222222222222222222
 REDIRECT_URI=https://auth.example.com/callback/
 ORIGIN=example.com
+
+# Set to production environment when deploying
+APP_ENV=prod
 ```
 
 For Gitlab you also have to provide these environment variables:
