@@ -2,18 +2,18 @@
 
 ***External authentication providers were enabled in netlify-cms version 0.4.3. Check your web console to see your netlify-cms version.***
 
-[netlify-cms](https://www.netlifycms.org/) has its own github OAuth client. This implementation was created by reverse engineering the results of that client, so it's not necessary to reimplement client part of [netlify-cms](https://www.netlifycms.org/).
+[netlify-cms](https://www.netlifycms.org/) has its own github OAuth client, which works with this implementation. So it's not necessary to reimplement client part.
 
-Github, Github Enterprise and Gitlab are currently supported, but as this is a general Oauth client, feel free to submit a PR to add other git hosting providers.
+Github, Github Enterprise and Gitlab are currently supported.
 
 Other implementations in: 
 * [Node](https://github.com/vencax/netlify-cms-github-oauth-provider) - which was the main inspiration for this
 * [PHP](https://github.com/TSV-Zorneding-1920/netlify-cms-oauth-provider-php) that did not work for me...
 * [Go lang](https://github.com/igk1972/netlify-cms-oauth-provider-go).
 
-## 1) Install Locally
+## Setup
 
-**Install Repo Locally**
+### Install Repo Locally
 
 ```bash
 git clone https://github.com/mcdeck/netlify-cms-oauth-provider-php
@@ -21,10 +21,11 @@ cd netlify-cms-oauth-provider-php
 composer install
 ```
 
-**Create Oauth App**
+### Create Oauth App
+
 Information is available on the [Github Developer Documentation](https://developer.github.com/apps/building-integrations/setting-up-and-registering-oauth-apps/registering-oauth-apps/) or [Gitlab Docs](https://docs.gitlab.com/ee/integration/oauth_provider.html). Fill out the fields however you like, except for **authorization callback URL**. This is where Github or Gitlab will send your callback after a user has authenticated, and should be `https://your.server.com/callback` for use with this repo.
 
-## 2) Config
+## Configure
 
 ### Auth Provider Config
 
@@ -75,7 +76,37 @@ backend:
   base_url: https://auth.example.com # Path to ext auth provider
 ```
 
-## 3) Deploy
+## Testing
+
+If you want, you can run your local copy with using Symfony's built-in web server.
+Before you do that, create an `.env.local` file with an oauth client id that is configured to redirect to http://localhost:8000/callback
+
+```yaml
+OAUTH_CLIENT_ID=clientidfromgithub
+OAUTH_CLIENT_SECRET=clientsecretfromgithub
+REDIRECT_URI=http://localhost:8000/callback/
+ORIGIN=.*
+```
+
+Then start the web server
+
+```bash
+cd netlify-cms-oauth-provider-php
+symfony serve
+``` 
+
+This launches a webserver on http://localhost:8000/ which you can use in your `config.yml`.
+
+```yaml
+backend:
+  name: github
+  repo: mcdeck/dad-on-tech.com
+  branch: main
+  
+  base_url: http://localhost:8000
+```
+
+## Deploy
 
 ### FTP
 
